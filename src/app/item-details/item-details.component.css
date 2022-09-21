@@ -1,0 +1,112 @@
+.content-card {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  box-shadow: none;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.content-header{
+  margin-bottom: 20px;
+}
+.content-title{
+  margin-top: 5px;
+}
+.mat-list-item-content{
+    background: darkgray;
+    max-width: 70px;
+    max-height: 30px;
+}
+.separator{
+  background-color: aliceblue;
+  height: 3px;
+  margin-bottom: 5px;
+}
+
+.menu-spacer {
+  flex: 1 1 auto;
+}
+
+.site-title{
+  color: aliceblue;
+  margin-left: 40px;
+
+}
+.site-title:hover{
+  text-decoration: none;
+}
+
+.menu-icon{
+  background: none;
+  align-items: center;
+}
+ .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  position: fixed;
+  bottom: 30px;
+  right: 10px;
+  z-index: 100;
+  border-radius: 50%;
+  align-items: center;
+}
+.site-header{
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+}
+.add-button{
+  background-color: dodgerblue;
+  border-radius: 60%;
+  width: 60px;
+  height: 60px;
+}
+.separator{
+  background-color: aliceblue;
+  height: 3px;
+  margin-bottom: 5px;
+}
+.comments-list{
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  box-shadow: none;
+  text-align: justify;
+}
+
+.comments-title{
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  text-decoration: solid;
+  font-size: large;
+}
+
+.comments-item{
+  background: aliceblue;
+}
+
+.comments-item:hover{
+  background: azure;
+}

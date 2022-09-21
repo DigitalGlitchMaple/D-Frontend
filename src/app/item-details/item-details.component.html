@@ -1,0 +1,22 @@
+<mat-card class="content-card" style="margin-top: 100px;">
+  <mat-card-header class="content-header">
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title class="content-title">{{contentItem.title}}</mat-card-title>
+  </mat-card-header>
+  <img *ngIf="contentItem.contentType == 0" class="content-img" mat-card-image [src]="trustedUrl" [alt]="fileTitle">
+  <video *ngIf="contentItem.contentType == 1" id="my_video_1" class="video-js vjs-default-skin content-img"  mat-card-image controls preload="none"
+  data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
+  <source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' />
+</video>
+  <div class="separator"></div>
+  <mat-list class="list-horizontal" role="list" *ngFor="let i of contentItem.tags">
+    <mat-list-item class="item-tag" role="listitem">{{i.name}}</mat-list-item>
+  </mat-list>
+</mat-card>
+
+<div class="comments-title">Comments</div>
+
+<mat-list class="comments-list" role="list" *ngFor="let i of comments">
+  <mat-list-item class="comments-item" role="listitem">{{i.text}}</mat-list-item>
+</mat-list>
+

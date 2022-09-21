@@ -1,0 +1,26 @@
+<div>
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a href="#" mat-list-item>Menu Item 1</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill><div class="search-results" style="margin-top: 100px;"
+      infinite-scroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50">
+  <div *ngFor="let i of contentItems">
+    <app-content-item  [contentItem] = i></app-content-item>
+  </div>
+</div></mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<div class="example-button-container">
+  <button class="add-button" mat-fab color="warn" aria-label="Add content item" routerLink="/add-item" routerLinkActive="active">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+
+

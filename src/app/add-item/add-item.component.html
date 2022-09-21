@@ -1,0 +1,41 @@
+<div class="form-title" style="margin-top: 100px;">Add Post</div>
+<div class="example-container form-list">
+  <form  appearance="fill" [formGroup]="form" (submit)="submit()">
+
+  <div class="form-group">
+    <mat-label for="title">Title</mat-label>
+      <div class="">
+          <input matInput placeholder="Title" formControlName="title" type="text" required>
+          <span *ngIf="form.controls.title.touched
+          &&  form.controls.title.invalid">This field is required</span>
+
+      </div>
+  </div>
+
+  <div class="form-group">
+    <mat-label for="contentType">Media Type</mat-label>
+      <select id="contentType" formControlName="contentType">
+        <option *ngFor="let type of contentType | keyvalue" [ngValue]="type.value">{{type.key}}</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+    <mat-label for="contentType">Media File</mat-label>
+      <div class="">
+          <input matInput (change)="getFile($event)" placeholder="File" type="file" required>
+          <span *ngIf="form.controls.file.touched && form.controls.file.invalid">Please upload file</span>
+      </div>
+  </div>
+
+  <div class="form-group">
+    <mat-label for="tags">Tags</mat-label>
+    <select id="tags" formControlName="tags">
+      <option *ngFor="let tag of tags | keyvalue" [ngValue]="tag.value">{{tag.key}}</option>
+    </select>
+  </div>
+
+  <div class="form-group btn-group">
+      <button class="" type="submit" [disabled]="!form.valid">Submit</button>
+  </div>
+  </form>
+</div>
