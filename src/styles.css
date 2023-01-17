@@ -1,11 +1,23 @@
-
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
 @import url('../node_modules/simple-keyboard/build/css/index.css');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Passions+Conflict&display=swap');
+
+:root {
+  --purple:rgba( 103, 58, 183, 1);
+  --red:#a94442;
+  --green: #42A948;
+  --shadows: rgba(0, 0, 0, 0.5);
+}
+
+body {
+  height: 100%;
+}
 
 .auth-card{
-  background: #c31432;
-  background: -webkit-linear-gradient(to right, #240b36, #c31432);
-  background: linear-gradient(to right, #240b36, #c31432);
+  background: var(--purple);
+  background: -webkit-linear-gradient(to right, #240b36, var(--purple));
+  background: linear-gradient(to right, #240b36, var(--purple));
   border-radius: 5px;
   box-shadow: 0px 0px 30px #f7f7f7;
 }
@@ -26,9 +38,11 @@ label{
   border-radius: 6px;
 }
 .btn-my{
+  margin-bottom: 10px;
   background-color: #d39e00;
   border-color: #d39e00;
   color: #fff;
+  width: 40%;
 }
 .simple-keyboard {
   max-width: 850px;
@@ -36,7 +50,13 @@ label{
 
 .item-tag
 .mat-list-item-content{
-  background: gainsboro;
+  background: #d39e00;
   max-width: 70px;
   max-height: 30px;
+  border-radius: 10%;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  
+}.mat-list-text {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

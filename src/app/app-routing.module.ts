@@ -5,11 +5,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 const routes: Routes = [
   { path: 'log-in', component: LogInComponent },
   { path: 'sign-up', component: SignUpComponent },
+  { path: 'forget-password', component: ForgotPasswordComponent},
   { path: 'landing-page', component: LandingPageComponent },
   { path: 'add-item', component: AddItemComponent },
   { path: 'post/:id', component: ItemDetailsComponent },

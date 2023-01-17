@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { AddItemComponent } from './add-item/add-item.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { AddItemComponent } from './add-item/add-item.component';
     LogInComponent,
     SignUpComponent,
     ItemDetailsComponent,
-    AddItemComponent
+    AddItemComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

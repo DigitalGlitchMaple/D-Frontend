@@ -1,17 +1,28 @@
-<mat-toolbar color="primary" class="site-header">
+<mat-toolbar color="primary" class="site-header" >
   <mat-toolbar-row>
-    <button mat-icon-button class="menu-icon" fxShow="true">
-      <mat-icon style="align-self: center;">menu</mat-icon>
+    <button mat-icon-button class="menu-icon" onclick="this.blur()" fxShow="true">
+      <mat-icon style="align-self: center;" (click)="opened=!opened">menu</mat-icon>
     </button>
     <a class="site-title" href="#">FunReel</a>
     <span class="menu-spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="auth-icon" aria-label="icon-button" >
+
+    <button  mat-icon-button [matMenuTriggerFor]="menu" class="auth-icon" aria-label="icon-button" >
       <mat-icon>account_circle</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/log-in" routerLinkActive="active">Log-In</button>
-      <button mat-menu-item routerLink="/sign-up" routerLinkActive="active">Sign-Up</button>
+    <mat-menu class="auth-menu" #menu="matMenu" >
+      <button class="menu-btn" mat-menu-item routerLink="/log-in" routerLinkActive="active">Log-In</button>
+      <button class="menu-btn" mat-menu-item routerLink="/sign-up" routerLinkActive="active">Sign-Up</button>
     </mat-menu>
+
   </mat-toolbar-row>
 </mat-toolbar>
-<router-outlet></router-outlet>
+
+<div class="main-content">
+  <mat-sidenav-container class="site-content">
+    <mat-sidenav class="site-sidenav" [(opened)]="opened" mode="side"></mat-sidenav>
+    <mat-sidenav-content class="sidenav-content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+  

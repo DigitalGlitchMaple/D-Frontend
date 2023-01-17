@@ -12,8 +12,17 @@
   <mat-list class="list-horizontal" role="list" *ngFor="let i of contentItem.tags">
     <mat-list-item class="item-tag" role="listitem">{{i.name}}</mat-list-item>
   </mat-list>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+  <mat-card-actions class="interaction-container">
+    <div class="like-container">
+      <button mat-button class="interaction-btn like-btn " (click)="increseLikeCounter()">
+        <mat-icon class="interaction-icon like-btn-animation">thumb_up</mat-icon>
+      </button>
+      <p class="like-counter interaction-icon">
+        {{likeCounter}}
+      </p>
+    </div>
+    <button mat-button class="interaction-btn share-btn">
+      <mat-icon class="interaction-icon">share</mat-icon>
+    </button>
   </mat-card-actions>
 </mat-card>

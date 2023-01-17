@@ -12,6 +12,7 @@ import { ContentType } from '../Enums/content-type';
 })
 export class ContentItemComponent implements OnInit {
 
+  likeCounter: number = 0;
   @Input() contentItem: ContentItem;
   fileTitle: string;
   trustedUrl: SafeResourceUrl;
@@ -33,6 +34,10 @@ export class ContentItemComponent implements OnInit {
 
   navigateToDetails(){
     this.router.navigate(['/post/', this.contentItem.id]);
+  }
+
+  increseLikeCounter(){
+    this.likeCounter++;
   }
 
 }

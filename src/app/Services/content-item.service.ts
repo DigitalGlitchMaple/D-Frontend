@@ -22,8 +22,9 @@ export class ContentItemService {
   }
 
   addContentItem(form: FormGroup){
-    let item = JSON.stringify(form.value);
-    return this.http.post<ContentItem>(this.contentItemUrl, item);
+    
+    console.log(form.value)
+    return this.http.post<ContentItem>(this.contentItemUrl, form.value);
   }
 
 }

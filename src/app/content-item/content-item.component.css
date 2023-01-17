@@ -8,8 +8,10 @@
 }
 
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  /* background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg'); */
+  background-image:url('https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') ;
   background-size: cover;
+  background-position: center;
 }
 
 .content-header{
@@ -17,6 +19,7 @@
 }
 .content-title{
   margin-top: 5px;
+  cursor: pointer;
 }
 .mat-list-item-content{
     background: darkgray;
@@ -27,4 +30,41 @@
   background-color: aliceblue;
   height: 3px;
   margin-bottom: 5px;
+}
+
+/*----Like and Share Buttons ---*/
+.interaction-container {
+  display: flex;
+  justify-content: space-between;
+}
+.like-container {
+  display: inline-flex;
+  grid-gap: 0.5rem;
+}
+.like-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+
+  font-family: 'Passions Conflict', cursive;
+  font-weight: bold;
+}
+.like-btn{
+  color: var(--purple);
+}
+.interaction-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.interaction-icon {
+  height: 32px;
+  width: 32px;
+  font-size: 32px;
 }
