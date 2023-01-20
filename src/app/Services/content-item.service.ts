@@ -27,4 +27,7 @@ export class ContentItemService {
     return this.http.post<ContentItem>(this.contentItemUrl, form.value);
   }
 
+  uploadContentItem(item: ContentItem) {
+    return this.http.put<ContentItem>(this.contentItemUrl, item);
+  }
 }
