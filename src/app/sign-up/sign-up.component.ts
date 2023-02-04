@@ -14,7 +14,7 @@ export class SignUpComponent implements OnInit {
   constructor(private user: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.user.currentUserData.subscribe()
+    this.user.user.subscribe()
   }
   signUp(userData: NgForm){
     this.user.changeData(userData.value);

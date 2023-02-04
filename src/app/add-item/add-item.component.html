@@ -1,16 +1,16 @@
 <div class="add-post-container">
-  <h1 class="form-title">Add Post</h1> 
+  <h1 class="form-title">Add Post</h1>
 
   <div class="form-card">
     <form appearance="fill" [formGroup]="form" (submit)="submit()">
-      
+
       <div class="form-group">
         <label class="label-content" for="title">Title</label>
         <input class="input-content" placeholder="Title" formControlName="title" type="text">
         <span class="req-field" *ngIf="form.controls.title.touched
         &&  form.controls.title.invalid">This field is required!</span>
       </div>
-  
+
       <div class="form-group">
         <label class="label-content" for="contentType">Media Type</label>
         <select class="input-content" id="contentType" formControlName="contentType" (click)="removeSelectOption($event)">
@@ -18,7 +18,7 @@
           <option *ngFor="let type of contentType | keyvalue" [ngValue]="type.value">{{type.key}}</option>
         </select>
       </div>
-  
+
       <div class="form-group">
         <label class="label-content" for="contentType">Media File</label>
         <div>
@@ -27,15 +27,15 @@
         </div>
           <span class="req-field" *ngIf="form.controls.file.touched && form.controls.file.invalid">Please upload file</span>
       </div>
-  
+
       <div class="form-group">
-        <label class="label-content" for="tags">Tags</label>
-        <select class="input-content" id="tags" formControlName="tags">
+        <label class="label-content" for="tagIds">Tags</label>
+        <select class="input-content" id="tagIds" formControlName="tagIds">
           <option value="null" style="display: none;">No Tag Selected</option>
           <option *ngFor="let tag of tags | keyvalue" [ngValue]="tag.value">{{tag.key}}</option>
         </select>
       </div>
-  
+
       <button class="input-content add-item-btn" type="submit" [disabled]="!form.valid">Submit</button>
     </form>
   </div>

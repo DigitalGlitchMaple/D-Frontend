@@ -1,8 +1,8 @@
-import { FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { ContentItem } from '../Models/ContentItem';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +22,13 @@ export class ContentItemService {
   }
 
   addContentItem(form: FormGroup){
-    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'multiplatform/form-data',
+      })
+    };
     console.log(form.value)
-    return this.http.post<ContentItem>(this.contentItemUrl, form.value);
+    return this.http.post<any>(this.contentItemUrl + '/additem', form.value, httpOptions);
   }
 
   uploadContentItem(item: ContentItem) {

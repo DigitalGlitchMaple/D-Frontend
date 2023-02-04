@@ -1,7 +1,8 @@
 export class User{
-  Id: number;
-  Username: string;
-  Password: string;
-  Email: string;
-  CreatedDate: Date;
+  id: number;
+  username: string;
+  password: string;
+  email: string;
+  createdDate: Date;
+  authdata?: string;
 }

@@ -1,3 +1,4 @@
+import { UserService } from './../Services/user-service.service';
 import { ContentType } from './../Enums/content-type';
 import { Component, OnInit } from '@angular/core';
 import { ContentItemService } from '../Services/content-item.service';
@@ -19,7 +20,7 @@ export class AddItemComponent implements OnInit {
   tags = Tags;
   fileName: string = "Select File";
 
-  constructor(private contentItemService: ContentItemService) {
+  constructor(private contentItemService: ContentItemService, private userService: UserService) {
    }
 
   ngOnInit(): void {
@@ -27,11 +28,15 @@ export class AddItemComponent implements OnInit {
       title: new FormControl('', [Validators.required]),
       contentType: new FormControl(null, [Validators.required]),
       file: new FormControl('', [Validators.required]),
-      tags: new FormControl(null, [Validators.required])
+      tagIds: new FormControl(null, [Validators.required]),
+      userId: new FormControl(null)
     });
   }
 
   submit() {
+
+    this.form.controls["userId"].setValue(this.userService.userValue.id);
+
     this.contentItemService.addContentItem(this.form).subscribe();
   }
 

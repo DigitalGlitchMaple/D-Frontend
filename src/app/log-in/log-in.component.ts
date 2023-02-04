@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs';
 import { UserService } from '../Services/user-service.service';
 
 
@@ -10,19 +12,49 @@ import { UserService } from '../Services/user-service.service';
 })
 export class LogInComponent implements OnInit {
   userData: any;
-  constructor(private user: UserService, private router: Router) { }
+  loading = false;
+  submitted = false;
+  returnUrl: string;
+  error = '';
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService
+) {
+}
 
   ngOnInit(): void {
-    this.user.currentUserData.subscribe(userData => (this.userData = userData));
+    this.userData = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+  });
+
+  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
   }
 
-  changeData(event) {
-    var msg = event.target.value;
-    this.user.changeData(msg);
-  }
-  login(data) {
-    this.user.changeData(data);
-    this.router.navigateByUrl('');
+  get f() { return this.userData.controls; }
+
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.userData.invalid) {
+        return;
+    }
+
+    this.loading = true;
+    this.userService.login(this.f.username.value, this.f.password.value)
+        .pipe(first())
+        .subscribe(
+            data => {
+                this.router.navigate([this.returnUrl]);
+            },
+            error => {
+                this.error = error;
+                this.loading = false;
+            });
   }
 
 }
