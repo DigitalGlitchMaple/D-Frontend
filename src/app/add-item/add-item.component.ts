@@ -3,6 +3,7 @@ import { ContentType } from './../Enums/content-type';
 import { Component, OnInit } from '@angular/core';
 import { ContentItemService } from '../Services/content-item.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 enum Tags {
 Funny = '1'
@@ -20,7 +21,7 @@ export class AddItemComponent implements OnInit {
   tags = Tags;
   fileName: string = "Select File";
 
-  constructor(private contentItemService: ContentItemService, private userService: UserService) {
+  constructor(private contentItemService: ContentItemService, private userService: UserService, private router: Router) {
    }
 
   ngOnInit(): void {
@@ -35,9 +36,15 @@ export class AddItemComponent implements OnInit {
 
   submit() {
 
-    this.form.controls["userId"].setValue(this.userService.userValue.id);
-
-    this.contentItemService.addContentItem(this.form).subscribe();
+    //this.form.controls["userId"].setValue(this.userService.userValue.id);
+    const contentItemData = new FormData();
+    contentItemData.append('file', this.form.get('file')?.value);
+    contentItemData.append('title', this.form.get('title')?.value);
+    contentItemData.append('contentType', this.form.get('contentType')?.value);
+    contentItemData.append('tagIds', this.form.get('tagIds')?.value);
+    contentItemData.append('userId', this.userService.userValue.id.toString());
+    this.contentItemService.addContentItem(contentItemData).subscribe();
+    this.router.navigate(['/']);
   }
 
   removeSelectOption(e){

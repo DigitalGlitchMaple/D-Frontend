@@ -21,14 +21,9 @@ export class ContentItemService {
     return this.http.get<ContentItem>(this.contentItemUrl+"/" +id);
   }
 
-  addContentItem(form: FormGroup){
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'multiplatform/form-data',
-      })
-    };
-    console.log(form.value)
-    return this.http.post<any>(this.contentItemUrl + '/additem', form.value, httpOptions);
+  addContentItem(form: FormData){
+    console.log(form)
+    return this.http.post<any>(this.contentItemUrl + '/additem', form);
   }
 
   uploadContentItem(item: ContentItem) {
