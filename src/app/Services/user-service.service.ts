@@ -9,9 +9,6 @@ import { User } from '../Models/User';
   providedIn: 'root'
 })
 export class UserService {
-  changeData(msg: any) {
-    throw new Error('Method not implemented.');
-  }
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
   userUrl = "https://localhost:7241/User";
@@ -49,5 +46,12 @@ export class UserService {
       localStorage.removeItem('user');
       this.userSubject.next({} as User);
       this.router.navigate(['/']);
+  }
+
+  signup(user: User){
+    user.authdata = window.btoa(user.username + ':' + user.password);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.userSubject.next(user);
+    return this.http.post<User>(this.userUrl, user);
   }
 }

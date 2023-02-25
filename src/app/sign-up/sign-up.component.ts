@@ -11,13 +11,13 @@ import { UserService } from '../Services/user-service.service';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private user: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.user.user.subscribe()
+    this.userService.user.subscribe()
   }
   signUp(userData: NgForm){
-    this.user.changeData(userData.value);
+    this.userService.signup(userData.value).subscribe();
     this.router.navigateByUrl('');
   }
 
