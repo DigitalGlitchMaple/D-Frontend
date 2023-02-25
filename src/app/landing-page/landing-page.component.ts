@@ -19,11 +19,14 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.contentItemService.getContentItems().subscribe((data: ContentItem[]) => {this.contentItems = data});
-    if(this.userService.userValue.authdata){
-      this.isUser = true;
-    }else{
-      this.isUser = false;
-    }
+    this.userService.user.subscribe(user => {
+      if(user.authdata){
+        this.isUser = true;
+      }
+      else{
+        this.isUser = false;
+      }
+    })
   }
 
 }

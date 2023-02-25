@@ -10,8 +10,9 @@
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu class="auth-menu" #menu="matMenu" >
-      <button class="menu-btn" mat-menu-item routerLink="/log-in" routerLinkActive="active">Log-In</button>
-      <button class="menu-btn" mat-menu-item routerLink="/sign-up" routerLinkActive="active">Sign-Up</button>
+      <button *ngIf="!isUser" class="menu-btn" mat-menu-item routerLink="/log-in" routerLinkActive="active">Log-In</button>
+      <button *ngIf="!isUser" class="menu-btn" mat-menu-item routerLink="/sign-up" routerLinkActive="active">Sign-Up</button>
+      <button *ngIf="isUser" class="menu-btn" mat-menu-item (click)="logout()" >Log-Out</button>
     </mat-menu>
 
   </mat-toolbar-row>
@@ -25,4 +26,4 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-  
+

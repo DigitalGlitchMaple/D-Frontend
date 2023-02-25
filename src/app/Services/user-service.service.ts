@@ -38,7 +38,6 @@ export class UserService {
     };
       return this.http.post<any>(this.userUrl + '/authenticate', { username, password }, httpOptions)
           .pipe(map(user => {
-              // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
               user.authdata = window.btoa(username + ':' + password);
               localStorage.setItem('user', JSON.stringify(user));
               this.userSubject.next(user);
@@ -47,9 +46,8 @@ export class UserService {
   }
 
   logout() {
-      // remove user from local storage to log user out
       localStorage.removeItem('user');
       this.userSubject.next({} as User);
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
   }
 }
