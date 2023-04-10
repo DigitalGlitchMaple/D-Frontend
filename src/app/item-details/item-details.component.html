@@ -1,4 +1,4 @@
-<mat-card class="content-card" style="margin-top: 100px;">
+<!-- <mat-card class="content-card" style="margin-top: 100px;">
   <mat-card-header class="content-header">
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title class="content-title">{{contentItem.title}}</mat-card-title>
@@ -12,7 +12,11 @@
   <mat-list class="list-horizontal" role="list" *ngFor="let i of contentItem.tags">
     <mat-list-item class="item-tag" role="listitem">{{i.name}}</mat-list-item>
   </mat-list>
-</mat-card>
+</mat-card> -->
+<div *ngIf="contentItem">
+  <app-content-item [contentItem] = contentItem></app-content-item>
+</div>
+
 
 <div class="comments-title">Comments</div>
 

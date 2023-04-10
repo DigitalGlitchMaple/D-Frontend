@@ -34,14 +34,5 @@ export class ItemDetailsComponent implements OnInit {
     this.contentItemService.getContentItem(this.contentItemId).subscribe((data: ContentItem) => {this.contentItem = data});
     this.commentsService.getComments(this.contentItemId).subscribe((data: Comment[]) => {this.comments = data});
 
-
   }
-  ngAfterViewInit(): void{
-    this.trustedUrl = this._sanitizer.bypassSecurityTrustResourceUrl("/assets/" + this.contentItem.fileName);
-
-    if(this.contentItem.fileName.length > 0){
-      this.fileTitle = this.contentItem.fileName.split('/')[0];
-    }
-  }
-
 }
