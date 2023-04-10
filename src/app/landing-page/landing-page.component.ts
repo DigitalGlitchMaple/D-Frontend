@@ -15,7 +15,7 @@ export class LandingPageComponent implements OnInit {
   contentItems: ContentItem[];
   isUser: Boolean;
 
-  constructor(private contentItemService: ContentItemService,private userService: UserService,  private route: ActivatedRoute) { }
+  constructor(private contentItemService: ContentItemService, private userService: UserService,  private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.contentItemService.getContentItems().subscribe((data: ContentItem[]) => {this.contentItems = data});
