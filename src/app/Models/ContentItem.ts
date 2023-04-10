@@ -7,5 +7,12 @@ export class ContentItem{
    createdDate: Date;
    contentType: ContentType
    fileName: string;
+   likes: number;
    tags: Tag[];
+}
+
+export class ContentUpload{
+  id: string;
+  title: string;
+  likes: number;
 }

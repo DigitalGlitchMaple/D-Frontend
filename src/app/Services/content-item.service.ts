@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { ContentItem } from '../Models/ContentItem';
+import { ContentItem, ContentUpload } from '../Models/ContentItem';
 import { FormGroup } from '@angular/forms';
 
 @Injectable({
@@ -26,7 +26,7 @@ export class ContentItemService {
     return this.http.post<any>(this.contentItemUrl + '/additem', form);
   }
 
-  uploadContentItem(item: ContentItem) {
+  uploadContentItem(item: ContentUpload) {
     return this.http.put<ContentItem>(this.contentItemUrl, item);
   }
 }

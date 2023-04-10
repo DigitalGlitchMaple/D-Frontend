@@ -1,8 +1,9 @@
-import { ContentItem } from './../Models/ContentItem';
+import { ContentItem, ContentUpload } from './../Models/ContentItem';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import {  Router } from '@angular/router';
 import { ContentType } from '../Enums/content-type';
+import { ContentItemService } from '../Services/content-item.service';
 
 
 @Component({
@@ -22,13 +23,17 @@ export class ContentItemComponent implements OnInit {
     this.videoplayer.nativeElement.play();
   }
 
-  constructor(private _sanitizer: DomSanitizer, private router: Router) {
+  constructor(private contentItemService: ContentItemService, private _sanitizer: DomSanitizer, private router: Router) {
   }
 
   ngOnInit(): void {
     this.trustedUrl = this._sanitizer.bypassSecurityTrustResourceUrl("/assets/" + this.contentItem.fileName);
     if(this.contentItem.fileName.length > 0){
       this.fileTitle = this.contentItem.fileName.split('/')[0];
+    }
+
+    if(this.contentItem.likes){
+      this.likeCounter = this.contentItem.likes
     }
   }
 
@@ -38,6 +43,13 @@ export class ContentItemComponent implements OnInit {
 
   increseLikeCounter(){
     this.likeCounter++;
+    const itemUpload: ContentUpload = {
+      id : this.contentItem.id,
+      title: this.contentItem.title,
+      likes: this.contentItem.likes +1
+
+    }
+    this.contentItemService.uploadContentItem(itemUpload).subscribe();
   }
 
 }
