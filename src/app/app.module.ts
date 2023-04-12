@@ -19,6 +19,9 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -54,7 +57,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatInputModule,
+    MatButtonModule
 
   ],
   providers: [

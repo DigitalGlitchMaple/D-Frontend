@@ -1,7 +1,6 @@
 import { ContentItem } from './ContentItem';
 export class Comment{
-  id: number;
   text: string;
-  createdDate: Date;
+  createdDate?: Date;
   contentItemId: number;
 }

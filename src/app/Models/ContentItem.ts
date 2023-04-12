@@ -2,7 +2,7 @@ import { ContentType } from './../Enums/content-type';
 import { Tag } from './Tag';
 
 export class ContentItem{
-   id: string;
+   id: number;
    title: string;
    createdDate: Date;
    contentType: ContentType
@@ -12,7 +12,7 @@ export class ContentItem{
 }
 
 export class ContentUpload{
-  id: string;
+  id: number;
   title: string;
   likes: number;
 }

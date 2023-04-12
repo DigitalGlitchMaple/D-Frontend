@@ -20,6 +20,12 @@
 
 <div class="comments-title">Comments</div>
 
+<mat-form-field class="example-full-width">
+  <mat-label>Leave a comment</mat-label>
+  <textarea matInput placeholder="Type the comment here" [value]="newComment" [(ngModel)]="newComment"></textarea>
+</mat-form-field>
+<button mat-raised-button [disabled]="!isUser" (click)="addComment()">Post</button>
+
 <mat-list class="comments-list" role="list" *ngFor="let i of comments">
   <mat-list-item class="comments-item" role="listitem">{{i.text}}</mat-list-item>
 </mat-list>
