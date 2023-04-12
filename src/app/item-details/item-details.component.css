@@ -110,3 +110,19 @@
 .comments-item:hover{
   background: azure;
 }
+
+.add-comment{
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.comment-text-input{
+  width: 100%;
+}
+
+.add-comment-button{
+  margin-left: 90%;
+}
