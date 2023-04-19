@@ -14,4 +14,7 @@ export class CommentsService {
   getComments(id: number) {
     return this.http.get<Comment[]>(this.commentsUrl+"/" +id);
   }
+  postComment(comment: Comment){
+    return this.http.post<Comment>(this.commentsUrl, comment);
+  }
 }
