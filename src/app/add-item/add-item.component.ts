@@ -2,53 +2,57 @@ import { UserService } from './../Services/user-service.service';
 import { ContentType } from './../Enums/content-type';
 import { Component, OnInit } from '@angular/core';
 import { ContentItemService } from '../Services/content-item.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-enum Tags {
-Funny = '1'
-}
 
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
   styleUrls: ['./add-item.component.css']
 })
-export class AddItemComponent implements OnInit {
-
+export class AddItemComponent implements OnInit{
   form: FormGroup;
   contentType = ContentType;
-  tags = Tags;
+  tags: Array<any> = [
+    { name: 'Funny', selected: true, id: 1},
+    { name: 'Awesome', selected: false, id: 2},
+    { name: 'Happy', selected: false, id: 3},
+    { name: 'Sad', selected: false, id: 4}
+  ];
   fileName: string = "Select File";
 
-  constructor(private contentItemService: ContentItemService, private userService: UserService, private router: Router) {
-   }
+  constructor(private contentItemService: ContentItemService, private userService: UserService, private router: Router, private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      contentType: new FormControl(null, [Validators.required]),
-      file: new FormControl('', [Validators.required]),
-      tagIds: new FormControl(null, [Validators.required]),
-      userId: new FormControl(null)
+    this.form = this.fb.group({
+      title: ['', Validators.required],
+      contentType: [null, Validators.required],
+      file:  [null, Validators.required],
+      tagIds: this.fb.array([],this.minSelectedCheckboxes(1)),
+      userId: null
     });
+    this.tags.forEach((tag) => this.tagIds.push(new FormControl(tag.selected)));
+  }
+
+// Gets value of tagIds inside FormGroup so you can iterate over it with "forEach"
+  get tagIds() {
+    return this.form.controls.tagIds as FormArray;
   }
 
   submit() {
+    // Sending tags to backend as an array
+    const selectedTags = this.form.value.tagIds.map((checked: boolean, i: number) => 
+    checked ?  this.tags[i].id : null).filter(checkedTags => checkedTags !== null);
 
     //this.form.controls["userId"].setValue(this.userService.userValue.id);
     const contentItemData = new FormData();
     contentItemData.append('file', this.form.get('file')?.value);
     contentItemData.append('title', this.form.get('title')?.value);
     contentItemData.append('contentType', this.form.get('contentType')?.value);
-    contentItemData.append('tagIds', this.form.get('tagIds')?.value);
+    contentItemData.append('tagIds[]', selectedTags);
     contentItemData.append('userId', this.userService.userValue.id.toString());
     this.contentItemService.addContentItem(contentItemData).subscribe();
     this.router.navigate(['/']);
-  }
-
-  removeSelectOption(e){
-    console.log(e.target.value.null)
   }
 
   getFile(e) {
@@ -77,6 +81,17 @@ export class AddItemComponent implements OnInit {
     }
   }
 
+  // Validator for tagIds - requires minimum 1 selected element in checkbox array
+  minSelectedCheckboxes(min = 1) {
+    const validator: Validators = (formArray: FormArray) => {
+      const totalSelected = formArray.controls
+        .map(control => control.value)
+        .reduce((prev, next) => next ? prev + next : prev, 0);
+  
+      return totalSelected >= min ? null : { required: true };
+    };
+    return validator;
+  }
 
   }
 

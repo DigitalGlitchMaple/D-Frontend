@@ -13,7 +13,7 @@
 
       <div class="form-group">
         <label class="label-content" for="contentType">Media Type</label>
-        <select class="input-content" id="contentType" formControlName="contentType" (click)="removeSelectOption($event)">
+        <select class="input-content" id="contentType" formControlName="contentType" >
           <option value="null" style="display: none;">No Media Type Selected</option>
           <option *ngFor="let type of contentType | keyvalue" [ngValue]="type.value">{{type.key}}</option>
         </select>
@@ -28,12 +28,20 @@
           <span class="req-field" *ngIf="form.controls.file.touched && form.controls.file.invalid">Please upload file</span>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" formArrayName="tagIds" >
         <label class="label-content" for="tagIds">Tags</label>
-        <select class="input-content" id="tagIds" formControlName="tagIds">
-          <option value="null" style="display: none;">No Tag Selected</option>
-          <option *ngFor="let tag of tags | keyvalue" [ngValue]="tag.value">{{tag.key}}</option>
-        </select>
+        <div class="multicheck">
+          <div class="tag-card" *ngFor="let tag of tags; let i = index">
+            <label class="tag-label" for="{{tag.name}}">
+              <input class="tag-selector" id="{{tag.id}}" type="checkbox" formControlName="{{i}}" [value]="tag.name" />
+              {{tag.name}}
+            </label>
+          </div>
+          
+        </div>
+          <p class="req-field" *ngIf="this.form.controls['tagIds'].errors?.['required']">
+            Checkbox is required, select atleast one value.
+          </p>
       </div>
 
       <button class="input-content add-item-btn" type="submit" [disabled]="!form.valid">Submit</button>
