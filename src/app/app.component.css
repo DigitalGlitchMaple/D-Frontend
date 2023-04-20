@@ -25,7 +25,7 @@
 /*-----burger menu icon-----*/
 .menu-icon{
   display: flex;
-  padding: 0.25rem;
+  justify-content: center;
   cursor: pointer;
   color:var(--menu-clr);
 
@@ -74,7 +74,6 @@
 .auth-icon {
   display: flex;
   justify-content: center;
-  padding: .25rem;
 
   background-color: transparent;
   border: none;
