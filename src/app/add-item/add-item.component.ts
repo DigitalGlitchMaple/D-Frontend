@@ -43,13 +43,17 @@ export class AddItemComponent implements OnInit{
     // Sending tags to backend as an array
     const selectedTags = this.form.value.tagIds.map((checked: boolean, i: number) => 
     checked ?  this.tags[i].id : null).filter(checkedTags => checkedTags !== null);
+     
+    console.log(selectedTags)
 
     //this.form.controls["userId"].setValue(this.userService.userValue.id);
     const contentItemData = new FormData();
     contentItemData.append('file', this.form.get('file')?.value);
     contentItemData.append('title', this.form.get('title')?.value);
     contentItemData.append('contentType', this.form.get('contentType')?.value);
-    contentItemData.append('tagIds[]', selectedTags);
+    for (let i = 0; i < selectedTags.length; i++) {
+      contentItemData.append('tagIds[]', selectedTags[i]);
+    }    
     contentItemData.append('userId', this.userService.userValue.id.toString());
     this.contentItemService.addContentItem(contentItemData).subscribe();
     this.router.navigate(['/']);

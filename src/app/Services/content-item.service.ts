@@ -22,7 +22,6 @@ export class ContentItemService {
   }
 
   addContentItem(form: FormData){
-    console.log(form)
     return this.http.post<any>(this.contentItemUrl + '/additem', form);
   }
 
